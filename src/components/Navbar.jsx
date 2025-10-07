@@ -26,7 +26,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <img src="/logo192.png" alt="Logo" className="w-10 h-10" />
-            <span className="text-xl font-bold">WhereToBuy</span>
+            <span className="text-xl font-bold">DailnDeal</span>
           </div>
 
           {/* Desktop Links */}
