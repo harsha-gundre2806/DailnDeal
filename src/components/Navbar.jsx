@@ -50,7 +50,7 @@ export default function Navbar() {
             className="flex items-center gap-2 cursor-pointer select-none"
             onClick={handleLogoClick}
           >
-            <img src="/logo192.png" alt="Logo" className="w-10 h-10" />
+            <img src="logo.jpg" alt="Logo" className="w-10 h-10" />
             <span className="text-xl font-bold">DailnDeal</span>
           </div>
 
