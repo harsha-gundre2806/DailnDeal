@@ -1,35 +1,60 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import LoginModal from "../login/LoginModal";
+import { NavLink, useNavigate } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
   const [dropdownHeight, setDropdownHeight] = useState(0);
+  const [showLoginOptions, setShowLoginOptions] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null); // { name: '', email: '' }
+  const [showTooltip, setShowTooltip] = useState(false);
 
-  // Update page padding dynamically
+  const navigate = useNavigate();
+
   useEffect(() => {
     const content = document.getElementById("page-content");
     if (content) {
-      content.style.paddingTop = `${64 + dropdownHeight}px`; // navbar height + dropdown
+      content.style.paddingTop = `${64 + dropdownHeight}px`;
     }
   }, [dropdownHeight]);
 
   const navLinkClass = ({ isActive }) =>
     `hover:underline ${isActive ? "font-bold underline" : ""}`;
 
+  const handleSignIn = (method) => {
+    if (method === "email") {
+      // Mock login: in real app, replace with API/auth
+      const mockUser = { name: "John Doe", email: "john@example.com" };
+      setUser(mockUser);
+      setIsLoggedIn(true);
+    } else if (method === "mobile") {
+      // Mock mobile login
+      const mockUser = { name: "Mobile User", email: "" };
+      setUser(mockUser);
+      setIsLoggedIn(true);
+    }
+    setShowLoginOptions(false);
+  };
+
+  const handleLogoClick = () => {
+    navigate("/home");
+  };
+
   return (
     <>
       <nav className="fixed top-0 left-0 w-full bg-blue-600/90 backdrop-blur-md text-white px-6 py-4 flex flex-col z-50 transition-all duration-300">
-        {/* Top row: logo + nav + login */}
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
+          {/* Logo + Text */}
+          <div
+            className="flex items-center gap-2 cursor-pointer select-none"
+            onClick={handleLogoClick}
+          >
             <img src="/logo192.png" alt="Logo" className="w-10 h-10" />
             <span className="text-xl font-bold">DailnDeal</span>
           </div>
 
-          {/* Desktop Links */}
+          {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-6">
             <NavLink to="/" className={navLinkClass}>
               Home
@@ -42,23 +67,63 @@ export default function Navbar() {
             </NavLink>
           </div>
 
-          {/* Login + Mobile Hamburger */}
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setShowLogin(true)}
-              className="px-4 py-2 bg-white text-blue-600 rounded-md hover:bg-gray-100 transition"
-            >
-              Login / Signup
-            </button>
+          {/* Right section */}
+          <div className="flex items-center gap-4 relative">
+            {!isLoggedIn ? (
+              <>
+                <button
+                  onClick={() => setShowLoginOptions(!showLoginOptions)}
+                  className="px-4 py-2 bg-white text-blue-600 rounded-md hover:bg-gray-100 transition"
+                >
+                  Login / Signup
+                </button>
 
-            {/* Render LoginModal */}
-            {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
+                {showLoginOptions && (
+                  <div className="absolute right-0 top-12 bg-white text-blue-600 shadow-lg rounded-lg w-48 overflow-hidden border border-gray-200 z-50">
+                    <button
+                      onClick={() => handleSignIn("email")}
+                      className="w-full text-left px-4 py-2 hover:bg-blue-50"
+                    >
+                      Sign in with Email
+                    </button>
+                    <button
+                      onClick={() => handleSignIn("mobile")}
+                      className="w-full text-left px-4 py-2 hover:bg-blue-50 border-t border-gray-200"
+                    >
+                      Sign in with Mobile (OTP)
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div
+                className="relative"
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+              >
+                <button
+                  onClick={() => navigate("/shopkeeper")}
+                  className="rounded-full bg-white text-blue-600 p-1 hover:bg-gray-100 transition"
+                >
+                  <FaUserCircle className="w-10 h-10" />
+                </button>
 
+                {/* Tooltip */}
+                {showTooltip && user && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white text-blue-600 p-2 rounded shadow-lg text-left z-50">
+                    <p className="font-semibold">{user.name}</p>
+                    {user.email && <p className="text-sm">{user.email}</p>}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Hamburger menu */}
             <button
               className="md:hidden ml-2 focus:outline-none"
               onClick={() => {
                 setIsOpen(!isOpen);
-                setDropdownHeight(isOpen ? 0 : 200); // approximate dropdown height
+                setDropdownHeight(isOpen ? 0 : 200);
               }}
             >
               <svg
@@ -137,9 +202,8 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Dummy wrapper for page content */}
       <div id="page-content" className="transition-padding duration-300">
-        {/* Your actual page content goes here */}
+        {/* Your actual page content */}
       </div>
     </>
   );
