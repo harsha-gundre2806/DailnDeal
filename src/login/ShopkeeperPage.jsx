@@ -39,108 +39,32 @@ const translations = {
     contactNumber: "संपर्क नंबर: +91 1234567890",
     contactEmail: "ईमेल: shop@example.com",
   },
-  Telugu: {
-    welcome: "స్వాగతం",
-    editProfile: "ప్రొఫైల్ ఎడిట్ చేయి",
-    myBusiness: "నా వ్యాపారం",
-    customerService: "కస్టమర్ సర్వీస్",
-    feedback: "ప్రతిస్పందన",
-    logout: "లాగ్ అవుట్",
-    changeLanguage: "భాష మార్చు",
-    shopName: "నా షాప్",
-    shopDescription: "ఇది ఒక నమూనా షాప్ వివరణ.",
-    contactNumber: "కాంటాక్ట్ నంబర్: +91 1234567890",
-    contactEmail: "ఇమెయిల్: shop@example.com",
-  },
-  Tamil: {
-    welcome: "வரவேற்கிறோம்",
-    editProfile: "சுயவிவரத்தை திருத்து",
-    myBusiness: "என் வியாபாரம்",
-    customerService: "வாடிக்கையாளர் சேவை",
-    feedback: "பின்னூட்டம்",
-    logout: "வெளியேறு",
-    changeLanguage: "மொழியை மாற்று",
-    shopName: "என் கடை",
-    shopDescription: "இது ஒரு மாதிரி கடை விவரணம்.",
-    contactNumber: "தொடர்பு எண்: +91 1234567890",
-    contactEmail: "மின்னஞ்சல்: shop@example.com",
-  },
-  Kannada: {
-    welcome: "ಸ್ವಾಗತ",
-    editProfile: "ಪ್ರೊಫೈಲ್ ಸಂಪಾದಿಸಿ",
-    myBusiness: "ನನ್ನ ವ್ಯವಹಾರ",
-    customerService: "ಗ್ರಾಹಕ ಸೇವೆ",
-    feedback: "ಪ್ರತಿಕ್ರಿಯೆ",
-    logout: "ಲಾಗ್ ಔಟ್",
-    changeLanguage: "ಭಾಷೆ ಬದಲಾಯಿಸಿ",
-    shopName: "ನನ್ನ ಅಂಗಡಿ",
-    shopDescription: "ಇದು ಒಂದು ಮಾದರಿ ಅಂಗಡಿ ವಿವರವಾಗಿದೆ.",
-    contactNumber: "ಸಂಪರ್ಕ ಸಂಖ್ಯೆ: +91 1234567890",
-    contactEmail: "ಇಮೇಲ್: shop@example.com",
-  },
-  Malayalam: {
-    welcome: "സ്വാഗതം",
-    editProfile: "പ്രൊഫൈൽ എഡിറ്റ് ചെയ്യുക",
-    myBusiness: "എന്റെ ബിസിനസ്",
-    customerService: "ഉപഭോക്തൃ സേവനം",
-    feedback: "പ്രതികരണം",
-    logout: "ലോഗൗട്ട്",
-    changeLanguage: "ഭാഷ മാറ്റുക",
-    shopName: "എന്റെ ഷോപ്പ്",
-    shopDescription: "ഇത് ഒരു സാമ്പിൾ ഷോപ്പ് വിവരണം ആണ്.",
-    contactNumber: "ഫോൺ നമ്പർ: +91 1234567890",
-    contactEmail: "ഇമെയിൽ: shop@example.com",
-  },
-  Marathi: {
-    welcome: "स्वागत आहे",
-    editProfile: "प्रोफाइल संपादित करा",
-    myBusiness: "माझा व्यवसाय",
-    customerService: "कस्टमर सर्व्हिस",
-    feedback: "अभिप्राय",
-    logout: "लॉग आउट",
-    changeLanguage: "भाषा बदला",
-    shopName: "माझी दुकान",
-    shopDescription: "हे एक नमुना दुकान वर्णन आहे.",
-    contactNumber: "संपर्क क्रमांक: +91 1234567890",
-    contactEmail: "ईमेल: shop@example.com",
-  },
-  Gujarati: {
-    welcome: "સ્વાગત છે",
-    editProfile: "પ્રોફાઇલ સંપાદિત કરો",
-    myBusiness: "મારો વ્યવસાય",
-    customerService: "ગ્રાહક સેવા",
-    feedback: "પ્રતિસાદ",
-    logout: "લૉગ આઉટ",
-    changeLanguage: "ભાષા બદલો",
-    shopName: "મારી દુકાન",
-    shopDescription: "આ એક નમૂનાકાર દુકાનનું વર્ણન છે.",
-    contactNumber: "સંપર્ક નંબર: +91 1234567890",
-    contactEmail: "ઈમેલ: shop@example.com",
-  },
-  Bengali: {
-    welcome: "স্বাগতম",
-    editProfile: "প্রোফাইল সম্পাদনা করুন",
-    myBusiness: "আমার ব্যবসা",
-    customerService: "কাস্টমার সার্ভিস",
-    feedback: "প্রতিক্রিয়া",
-    logout: "লগ আউট",
-    changeLanguage: "ভাষা পরিবর্তন করুন",
-    shopName: "আমার দোকান",
-    shopDescription: "এটি একটি নমুনা দোকানের বিবরণ।",
-    contactNumber: "যোগাযোগ নম্বর: +91 1234567890",
-    contactEmail: "ইমেল: shop@example.com",
-  },
+  // Add other languages here
 };
 
 function ShopkeeperPage() {
-  const [name, setName] = useState("John Doe");
+  const [name, setName] = useState("shop keeper");
   const [language, setLanguage] = useState("English");
   const [activeSection, setActiveSection] = useState(null);
+  const [feedback, setFeedback] = useState("");
   const [shopProducts] = useState([
     { id: 1, name: "Product A", price: 100 },
     { id: 2, name: "Product B", price: 200 },
   ]);
-  const [feedback, setFeedback] = useState("");
+
+  // Profile fields
+  const [email, setEmail] = useState("shopkeeper@example.com");
+  const [originalEmail] = useState("shopkeeper@example.com");
+  const [emailVerified, setEmailVerified] = useState(true); // initially verified
+
+  const [mobile, setMobile] = useState("9876543210");
+  const [originalMobile] = useState("9876543210");
+  const [mobileVerified, setMobileVerified] = useState(true); // initially verified
+
+  const [shopName, setShopName] = useState("My Shop");
+  const [shopAddress, setShopAddress] = useState(
+    "123 Market Street, Hyderabad"
+  );
 
   const t = translations[language];
 
@@ -148,18 +72,34 @@ function ShopkeeperPage() {
     setActiveSection(activeSection === section ? null : section);
   };
 
-  const handleFeedbackSubmit = () => {
-    alert(`Feedback received:\n${feedback}`);
-    setFeedback("");
+  const handleEmailOTP = () => {
+    const otp = prompt("Enter the OTP sent to your email:");
+    if (otp === "1234") setEmailVerified(true);
+    else alert("Invalid OTP!");
+  };
+
+  const handleMobileOTP = () => {
+    const otp = prompt("Enter the OTP sent to your mobile number:");
+    if (otp === "1234") setMobileVerified(true);
+    else alert("Invalid OTP!");
+  };
+
+  const handleSaveProfile = () => {
+    if (!emailVerified || !mobileVerified) {
+      alert("Please verify changed email and/or mobile before saving.");
+      return;
+    }
+    alert("Profile updated successfully!");
   };
 
   const handleLogout = () => {
     alert("Logged out successfully!");
+    window.location.href = "/";
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "40px", padding: "20px" }}>
-      <h1 style={{ marginBottom: "30px" }}>
+    <div className="text-center mt-10 p-4">
+      <h1 className="text-2xl font-semibold mb-6">
         {t.welcome}, {name}
       </h1>
 
@@ -171,17 +111,116 @@ function ShopkeeperPage() {
         >
           {t.editProfile}
         </button>
+
         {activeSection === "editProfile" && (
-          <div className="p-4 border-l-4 border-blue-600 bg-blue-50 rounded-b mb-2">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="border p-2 rounded w-full mb-2"
-            />
-            <p className="text-sm text-gray-600">
-              Enter your new display name
-            </p>
+          <div className="p-4 border-l-4 border-blue-600 bg-blue-50 rounded-b mb-2 space-y-3">
+            <div>
+              <label className="block font-semibold text-gray-700 mb-1">
+                Shopkeeper ID
+              </label>
+              <input
+                type="text"
+                value="SKP-2025-001"
+                readOnly
+                className="border p-2 rounded w-full bg-gray-100 cursor-not-allowed"
+              />
+            </div>
+
+            <div>
+              <label className="block font-semibold text-gray-700 mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="border p-2 rounded w-full"
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className="block font-semibold text-gray-700 mb-1">
+                Email
+              </label>
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setEmailVerified(e.target.value === originalEmail); // reset verification if changed
+                  }}
+                  className="border p-2 rounded w-full"
+                />
+                {email !== originalEmail && (
+                  <button
+                    onClick={handleEmailOTP}
+                    className="px-3 py-2 bg-blue-600 text-white rounded"
+                  >
+                    Verify
+                  </button>
+                )}
+              </div>
+              {emailVerified && <p className="text-green-600 text-sm mt-1">Verified ✅</p>}
+            </div>
+
+            {/* Mobile */}
+            <div>
+              <label className="block font-semibold text-gray-700 mb-1">
+                Mobile
+              </label>
+              <div className="flex gap-2">
+                <input
+                  type="tel"
+                  value={mobile}
+                  onChange={(e) => {
+                    setMobile(e.target.value);
+                    setMobileVerified(e.target.value === originalMobile); // reset verification if changed
+                  }}
+                  className="border p-2 rounded w-full"
+                />
+                {mobile !== originalMobile && (
+                  <button
+                    onClick={handleMobileOTP}
+                    className="px-3 py-2 bg-blue-600 text-white rounded"
+                  >
+                    Verify
+                  </button>
+                )}
+              </div>
+              {mobileVerified && <p className="text-green-600 text-sm mt-1">Verified ✅</p>}
+            </div>
+
+            <div>
+              <label className="block font-semibold text-gray-700 mb-1">
+                Shop Name
+              </label>
+              <input
+                type="text"
+                value={shopName}
+                onChange={(e) => setShopName(e.target.value)}
+                className="border p-2 rounded w-full"
+              />
+            </div>
+
+            <div>
+              <label className="block font-semibold text-gray-700 mb-1">
+                Shop Address
+              </label>
+              <textarea
+                value={shopAddress}
+                onChange={(e) => setShopAddress(e.target.value)}
+                className="border p-2 rounded w-full"
+              />
+            </div>
+
+            <button
+              onClick={handleSaveProfile}
+              className="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+            >
+              Save Changes
+            </button>
           </div>
         )}
 
@@ -208,6 +247,7 @@ function ShopkeeperPage() {
         >
           {t.myBusiness}
         </button>
+
         {activeSection === "myBusiness" && (
           <div className="p-4 border-l-4 border-green-600 bg-green-50 rounded-b mb-2">
             <h3 className="font-semibold">{t.shopName}</h3>
@@ -215,7 +255,7 @@ function ShopkeeperPage() {
             <ul className="mt-2">
               {shopProducts.map((p) => (
                 <li key={p.id}>
-                  {p.name} - ${p.price}
+                  {p.name} - ₹{p.price}
                 </li>
               ))}
             </ul>
@@ -229,6 +269,7 @@ function ShopkeeperPage() {
         >
           {t.customerService}
         </button>
+
         {activeSection === "customerService" && (
           <div className="p-4 border-l-4 border-yellow-600 bg-yellow-50 rounded-b mb-2">
             <p>{t.contactNumber}</p>
@@ -243,6 +284,7 @@ function ShopkeeperPage() {
         >
           {t.feedback}
         </button>
+
         {activeSection === "feedback" && (
           <div className="p-4 border-l-4 border-purple-600 bg-purple-50 rounded-b mb-2">
             <textarea
@@ -253,20 +295,15 @@ function ShopkeeperPage() {
             />
             <button
               className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition"
-              onClick={handleFeedbackSubmit}
+              onClick={() => {
+                alert(`Feedback received:\n${feedback}`);
+                setFeedback("");
+              }}
             >
               Submit Feedback
             </button>
           </div>
         )}
-
-        {/* Logout */}
-        <button
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition w-full text-left"
-          onClick={() => { toggleSection("logout"); handleLogout(); }}
-        >
-          {t.logout}
-        </button>
       </div>
     </div>
   );
