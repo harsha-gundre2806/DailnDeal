@@ -75,7 +75,7 @@ export default function Footer() {
         <p>© 2025 Where to Purchase. All rights reserved.</p>
         <div className="flex space-x-4 mt-2 md:mt-0">
           <Link to="/privacy" className="hover:underline">Privacy Policy</Link>
-          <Link to="/terms" className="hover:underline">Terms of Service</Link>
+          <Link to="/t&c" className="hover:underline">Terms of Service</Link>
           <Link to="/help" className="hover:underline">Help Center</Link>
         </div>
       </div>

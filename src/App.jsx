@@ -5,10 +5,18 @@ import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import StorePage from "./pages/StorePage";
 import NotFound from "./pages/NotFound";
+
+import Profile from "./pages/profile";
+import Saved from "./pages/Saved";
+import Favourites from "./pages/Favourites";
+import Notifications from "./pages/Notifications";
+import MyBusiness from "./pages/MyBusiness";
 // Role-based pages
 import AdminPage from "./login/AdminPage";
-import ShopkeeperPage from "./login/ShopkeeperPage";
-import CustomerPage from "./login/CustomerPage";
+
+import Terms from "./terms/Terms";
+import Privacy from "./terms/Privacy";
+import Help from "./terms/Help";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -65,12 +73,21 @@ function App() {
         <Route path="/about" element={<About />} />
         {/* Role-based routes */}
         <Route path="/admin" element={<AdminPage />} />
-        <Route path="/shopkeeper" element={<ShopkeeperPage />} />
-        <Route path="/customer" element={<CustomerPage />} />
 
         {/* Search page */}
         <Route path="/search" element={<SearchPage />} />
 
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/edit-profile" element={<Profile />} />
+        <Route path="/saved" element={<Saved />} />
+        <Route path="/favourites" element={<Favourites />} />
+        <Route path="/t&c" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/help" element={<Help />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/my-business" element={<MyBusiness />} />
+
+        
         {/* Catch-all */}
         <Route path="*" element={<NotFound />} />
       </Routes>
