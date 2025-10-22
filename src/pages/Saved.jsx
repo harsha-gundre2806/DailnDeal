@@ -1,115 +1,60 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TrendingProducts from "../components/TrendingProducts";
 import FeaturedShops from "../components/FeaturedShops";
+import TabSwitcher from "../components/TabSwitcher";
 
-export default function Saved() {
-  const [activeTab, setActiveTab] = useState("products"); // "products" or "shops"
-  const [savedProducts, setSavedProducts] = useState([]);
-  const [savedShops, setSavedShops] = useState([]);
+export default function Saved({
+  savedProducts = [],
+  favouriteProducts = [],
+  savedShops = [],
+  favouriteShops = [],
+  toggleSaveProduct = () => {},
+  toggleFavouriteProduct = () => {},
+  toggleSaveShop = () => {},
+  toggleFavouriteShop = () => {},
+}) {
+  const [activeTab, setActiveTab] = useState("products");
 
-  // Load saved items from localStorage
-  useEffect(() => {
-    const products = JSON.parse(localStorage.getItem("savedProducts")) || [];
-    const shops = JSON.parse(localStorage.getItem("savedShops")) || [];
-    setSavedProducts(products);
-    setSavedShops(shops);
-  }, []);
+  const tabs = [
+    { key: "products", label: "Saved Products" },
+    { key: "shops", label: "Saved Shops" },
+  ];
+
+  // Helper function to determine if a product/shop is favourite or saved
+  const isFavourite = (item, favourites) => favourites.some(f => f.id === item.id);
+  const isSaved = (item, saved) => saved.some(s => s.id === item.id);
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Tabs */}
-        <div className="flex gap-4 mb-8 justify-center">
-          <button
-            className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
-              activeTab === "products"
-                ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg"
-                : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"
-            }`}
-            onClick={() => setActiveTab("products")}
-          >
-            Saved Products
-          </button>
-          <button
-            className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
-              activeTab === "shops"
-                ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg"
-                : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"
-            }`}
-            onClick={() => setActiveTab("shops")}
-          >
-            Saved Shops
-          </button>
-        </div>
+        <TabSwitcher tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
 
-        {/* Products Card */}
-        {activeTab === "products" && (
-          <div className="bg-white shadow-md rounded-xl p-6 mb-8 transition-all duration-500 ease-in-out">
-            {savedProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {savedProducts.map((product, idx) => (
-                  <div
-                    key={idx}
-                    className="border rounded-lg p-4 shadow-sm hover:shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
-                  >
-                    <img
-                      src={product.image || "/placeholder.png"}
-                      alt={product.name}
-                      className="w-full h-40 object-cover rounded-md mb-3"
-                    />
-                    <h3 className="font-semibold text-gray-800">{product.name}</h3>
-                    <p className="text-sm text-gray-500">{product.category}</p>
-                    <p className="text-gray-700 font-medium mt-1">{product.price}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-gray-500 text-center">No saved products</p>
-            )}
-
-            {/* Trending Products */}
-            <div className="mt-8 bg-gray-50 p-4 rounded-lg shadow-inner">
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                Trending Products
-              </h2>
-              <TrendingProducts />
-            </div>
-          </div>
-        )}
-
-        {/* Shops Card */}
-        {activeTab === "shops" && (
-          <div className="bg-white shadow-md rounded-xl p-6 mb-8 transition-all duration-500 ease-in-out">
-            {savedShops.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {savedShops.map((shop, idx) => (
-                  <div
-                    key={idx}
-                    className="border rounded-lg p-4 shadow-sm hover:shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
-                  >
-                    <img
-                      src={shop.image || "/shop-placeholder.png"}
-                      alt={shop.name}
-                      className="w-full h-40 object-cover rounded-md mb-3"
-                    />
-                    <h3 className="font-semibold text-gray-800">{shop.name}</h3>
-                    <p className="text-sm text-gray-500">{shop.category}</p>
-                    <p className="text-gray-700 font-medium mt-1">{shop.location}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-gray-500 text-center">No saved shops</p>
-            )}
-
-            {/* Featured Shops */}
-            <div className="mt-8 bg-gray-50 p-4 rounded-lg shadow-inner">
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                Featured Shops
-              </h2>
-              <FeaturedShops />
-            </div>
-          </div>
+        {activeTab === "products" ? (
+          savedProducts.length > 0 ? (
+            <TrendingProducts
+              products={savedProducts}
+              savedProducts={savedProducts}
+              favouriteProducts={favouriteProducts}
+              toggleSaveProduct={toggleSaveProduct}
+              toggleFavouriteProduct={toggleFavouriteProduct}
+              isFavourite={isFavourite}
+              isSaved={isSaved}
+            />
+          ) : (
+            <p className="text-gray-500 text-center mt-8">No saved products</p>
+          )
+        ) : savedShops.length > 0 ? (
+          <FeaturedShops
+            shops={savedShops}
+            savedShops={savedShops}
+            favouriteShops={favouriteShops}
+            toggleSaveShop={toggleSaveShop}
+            toggleFavouriteShop={toggleFavouriteShop}
+            isFavourite={isFavourite}
+            isSaved={isSaved}
+          />
+        ) : (
+          <p className="text-gray-500 text-center mt-8">No saved shops</p>
         )}
       </div>
     </div>

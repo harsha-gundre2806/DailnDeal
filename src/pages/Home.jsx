@@ -7,11 +7,20 @@ import TrendingProducts from "../components/TrendingProducts";
 import FeaturedShops from "../components/FeaturedShops";
 import CallToAction from "../components/CallToAction";
 
-
-export default function Home() {
+export default function Home({
+  allProducts = [],
+  allShops = [],
+  savedProducts = [],
+  favouriteProducts = [],
+  savedShops = [],
+  favouriteShops = [],
+  toggleSaveProduct = () => {},
+  toggleFavouriteProduct = () => {},
+  toggleSaveShop = () => {},
+  toggleFavouriteShop = () => {},
+}) {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  const [showLogin, setShowLogin] = useState(false); // 👈 controls popup
 
   // Unified categories with icons
   const categories = [
@@ -23,7 +32,6 @@ export default function Home() {
     { name: "Sports", icon: "sports_soccer" },
   ];
 
-  // Handle hero button click (top categories)
   const handleHeroCategoryClick = (category) => {
     setSearchQuery(category);
     navigate(`/search?category=${encodeURIComponent(category)}`);
@@ -31,8 +39,6 @@ export default function Home() {
 
   return (
     <MainLayout>
-     
-      
       {/* Hero Section */}
       <section className="flex pt-20 flex-col items-center justify-center text-center py-20 bg-gray-50 rounded-xl shadow-md px-4">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-blue-600">
@@ -171,10 +177,35 @@ export default function Home() {
         </div>
       </section>
 
-      <FeaturedShops />
-      <TrendingProducts />
+      {/* All Shops */}
+      <section className="py-16 px-4 bg-gray-50">
+        <h2 className="text-3xl font-bold text-center mb-8 text-blue-600">
+          Shops Near You
+        </h2>
+        <FeaturedShops
+          shops={allShops}
+          savedShops={savedShops}
+          favouriteShops={favouriteShops}
+          toggleSaveShop={toggleSaveShop}
+          toggleFavouriteShop={toggleFavouriteShop}
+        />
+      </section>
+
+      {/* All Products */}
+      <section className="py-16 px-4 bg-white">
+        <h2 className="text-3xl font-bold text-center mb-8 text-blue-600">
+          Trending Products
+        </h2>
+        <TrendingProducts
+          products={allProducts}
+          savedProducts={savedProducts}
+          favouriteProducts={favouriteProducts}
+          toggleSaveProduct={toggleSaveProduct}
+          toggleFavouriteProduct={toggleFavouriteProduct}
+        />
+      </section>
+
       <CallToAction />
     </MainLayout>
   );
 }
-

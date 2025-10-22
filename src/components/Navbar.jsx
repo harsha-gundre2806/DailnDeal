@@ -249,41 +249,47 @@ export default function Navbar() {
             </label>
 
             {/* Mobile Login */}
-            <div className="flex flex-col gap-2 mt-2">
-              <label className="text-sm text-gray-700">Mobile Number</label>
-              <div className="flex items-center border rounded-md overflow-hidden">
-                <span className="px-3 py-2 bg-gray-100 text-gray-700">+91</span>
-                <input
-                  type="text"
-                  placeholder="Enter 10-digit number"
-                  value={mobileNumber}
-                  onChange={(e) => setMobileNumber(e.target.value)}
-                  className="flex-1 px-3 py-2 outline-none"
-                />
-              </div>
-              <button
-                disabled={!isValidMobile || !agree}
-                onClick={() => handleSignIn("mobile")}
-                className={`mt-2 py-2 rounded-md text-white font-semibold transition ${
-                  isValidMobile && agree
-                    ? "bg-blue-600 hover:bg-blue-700"
-                    : "bg-gray-400 cursor-not-allowed"
-                }`}
-              >
-                Login with OTP
-              </button>
-            </div>
+<div className="flex flex-col gap-2 mt-2">
+  <label className="text-sm text-gray-700">Mobile Number</label>
+  <div className="flex items-center border rounded-md overflow-hidden">
+    <span className="px-3 py-2 bg-gray-100 text-gray-700">+91</span>
+    <input
+      type="text"
+      placeholder="Enter 10-digit number"
+      value={mobileNumber}
+      onChange={(e) => setMobileNumber(e.target.value)}
+      className="flex-1 px-3 py-2 outline-none"
+    />
+  </div>
+  <button
+    disabled={!isValidMobile || !agree}
+    onClick={() => handleSignIn("mobile")}
+    className={`mt-2 py-2 rounded-md text-white font-semibold transition ${
+      isValidMobile && agree
+        ? "bg-blue-600 hover:bg-blue-700"
+        : "bg-gray-400 cursor-not-allowed"
+    }`}
+  >
+    Login with OTP
+  </button>
+</div>
 
-            {/* Or Login Using */}
-            <div className="text-center text-sm text-gray-500 mt-2">
-              Or Login Using
-            </div>
-            <button
-              onClick={() => handleSignIn("email")}
-              className="py-2 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50 transition"
-            >
-              Login with Email
-            </button>
+{/* Or Login Using */}
+<div className="text-center text-sm text-gray-500 mt-2">
+  Or Login Using
+</div>
+<button
+  onClick={() => {
+    if (!agree) return; // <-- prevent login if terms not accepted
+    handleSignIn("email");
+  }}
+  disabled={!agree}
+  className={`py-2 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50 transition w-full mt-2 ${
+    !agree ? "opacity-50 cursor-not-allowed" : ""
+  }`}
+>
+  Login with Google
+</button>
 
             {/* Skip button */}
             <button
